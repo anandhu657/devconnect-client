@@ -1,0 +1,32 @@
+<app-right-sidebar-blog [user]="blog.user" [tags]="blog.tags"></app-right-sidebar-blog>
+<div style="margin-right: 320px;">
+    <mat-card class="ms-3 my-3">
+        <mat-card-header>
+            <mat-card-title>{{blog.title}}</mat-card-title>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openReportReasonDialog()">
+                    <mat-icon>report</mat-icon>
+                    <span>Report Question</span>
+                </button>
+            </mat-menu>
+
+            <mat-card-subtitle>{{blog.details}}</mat-card-subtitle>
+            <mat-card-subtitle>
+                <mat-chip-set>
+                    <mat-chip *ngFor="let tag of blog.tags">
+                        {{tag.name}}
+                    </mat-chip>
+                </mat-chip-set>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <div class="d-flex justify-content-evenly my-3">
+            <fa-icon class="icon-profile fa-lg" [icon]="likeButton" (click)="like()"></fa-icon>
+            <fa-icon class="icon-profile fa-lg" [icon]="shareButton" (click)="openDialog()"></fa-icon>
+            <fa-icon class="icon-profile fa-lg" [icon]="saveButton" (click)="saveBlog()"></fa-icon>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Edit Profile</h2>
+<mat-dialog-content class="mat-typography" style="width: 1000px;">
+    <form class="example-form" (ngSubmit)="editUser()" [formGroup]="userDetails">
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field class="example-full-width w-100">
+                    <mat-label>Gmail</mat-label>
+                    <input matInput disabled value="{{user?.email}}" class="w-100">
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-full-width w-100">
+                    <mat-label>User name</mat-label>
+                    <input matInput disabled value="{{user?.username}}">
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width w-100" appearance="outline">
+                <mat-label>Enter Your title here...</mat-label>
+                <input matInput value="{{user?.title}}" formControlName="title">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width w-100" appearance="outline">
+                <mat-label>About</mat-label>
+                <textarea matInput placeholder="Add your bio" value="{{user?.about}}"
+                    formControlName="about"></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- Social media link fields -->
+        <div class="row">
+            <div class="col-4">
+                <mat-form-field class="example-full-width w-100" appearance="outline">
+                    <mat-label>Paste your github link</mat-label>
+                    <input matInput formControlName="githubLink" value="{{user?.socialLinks?.githubLink}}">
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field class="example-full-width w-100" appearance="outline">
+                    <mat-label>Paste your LinkedIn link</mat-label>
+                    <input matInput formControlName="linkedInLink" value="{{user?.socialLinks?.linkedInLink}}">
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field class="example-full-width w-100" appearance="outline">
+                    <mat-label>Paste your Personal website link</mat-label>
+                    <input matInput formControlName="personalWebsite" value="{{user?.socialLinks?.personalWebsite}}" />
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- social media links field -->
+
+        <div>
+            <mat-form-field class="example-full-width w-100" appearance="outline">
+                <mat-label>Interested tags</mat-label>
+                <textarea matInput placeholder="Add your Interseted tags"></textarea>
+            </mat-form-field>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button [mat-dialog-close]="true" type="submit" cdkFocusInitial>Save</button>
+        </mat-dialog-actions>
+    </form>
+</mat-dialog-content>

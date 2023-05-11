@@ -1,0 +1,8 @@
+<div class="container-fluid py-3">
+    <h1>Share</h1>
+
+    <share-buttons theme="circles-dark"
+        [include]="['copy', 'facebook', 'email', 'messenger', 'linkedin',  'sms', 'telegram', 'twitter', 'whatsapp']"
+        [showIcon]="true" [showText]="false" url="{{data.url}}" description="Blog" class="">
+    </share-buttons>
+</div>

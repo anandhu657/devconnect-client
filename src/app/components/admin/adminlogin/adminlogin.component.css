@@ -1,0 +1,24 @@
+.logo {
+    max-width: 18%;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.login-link {
+    color: blue;
+    text-decoration: none;
+}
+
+@media (max-width: 992px) {
+    .logo {
+        max-width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        max-width: 40%;
+    }
+}

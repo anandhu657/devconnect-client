@@ -1,0 +1,25 @@
+<mat-card class="ms-3 my-3">
+    <mat-card-header>
+        <mat-card-title [routerLink]="['/question', ques_id]">{{title}}</mat-card-title>
+        <mat-card-subtitle>
+            <mat-chip-set>
+                <mat-chip *ngFor="let tag of tags">
+                    {{tag.name}}
+                </mat-chip>
+            </mat-chip-set>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <div class="d-flex justify-content-between">
+        <mat-card-actions>
+            <mat-card-subtitle class="mx-2">{{answerCount}} answered</mat-card-subtitle>
+            <mat-card-subtitle class="mx-2">{{views ? views : 0}} views</mat-card-subtitle>
+        </mat-card-actions>
+
+        <mat-card-actions align="end">
+            <img src="{{profile_pic}}" class="profile-pic mx-1" alt="">
+            <span class="fw-bold" [routerLink]="['/profile',userId]">{{user}}</span>
+
+            <mat-card-subtitle class="mx-3">asked {{askedTime | datetoMinutes}} ago</mat-card-subtitle>
+        </mat-card-actions>
+    </div>
+</mat-card>

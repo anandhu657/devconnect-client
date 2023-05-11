@@ -1,0 +1,27 @@
+<div class="msb ms-auto" id="msb" style="right: 0;">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="" id="navbarNav">
+            <div>
+                <label id="" class="ps-3 pt-3 fw-bold">Filter By</label>
+            </div>
+            <div class="">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="d-flex flex-column"
+                    [(ngModel)]="filterValue" (change)="sendFilter()">
+                    <mat-radio-button class="ms-4" *ngFor="let filter of filterBY" [value]="filter">
+                        {{filter}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
+                <p class="fw-bold ps-3 pt-3 m-0">Top Blogs</p>
+                <ul>
+                    <li *ngFor="let latestBlog of latestBlogs" class="text-truncate">
+                        <a [routerLink]="['/blogs', latestBlog._id]">
+                            {{latestBlog.title}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

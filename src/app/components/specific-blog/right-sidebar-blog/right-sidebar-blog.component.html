@@ -1,0 +1,29 @@
+<div class="msb ms-auto" id="msb" style="right: 0;">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="px-3 w-100" id="navbarNav">
+            <div>
+                <img src="{{user.profile_pic}}" class="rounded-circle " width="80px" height="80px" alt="" />
+                <div class="pt-2">
+                    <h3 class="m-0 fw-bold" [routerLink]="['/profile',user._id]">{{user.username}}</h3>
+                    <p class="m-0">300 connections</p>
+                    <p class="text-wrap pt-3 text-truncate">{{user.about}}</p>
+                </div>
+                <button class="btn btn-success">Connect</button>
+            </div>
+            <hr />
+            <div class="">
+                <ul class="list-group">
+                    <li class="list-group-item active text-truncate">
+                        Related Blogs
+                    </li>
+                    <li class="list-group-item text-truncate" *ngFor="let blog of realatedBlog">
+                        <a [routerLink]="['/blogs',blog._id]" data-toggle="tooltip" title="{{blog.title}}"
+                            style="font-size:12px;" class="text-decoration-none">
+                            {{blog.title}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

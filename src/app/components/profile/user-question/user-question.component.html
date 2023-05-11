@@ -1,0 +1,26 @@
+<mat-card class="m-3">
+    <mat-card-header>
+        <mat-card-title>{{title}}</mat-card-title>
+        <mat-card-subtitle>
+            <mat-chip-set>
+                <mat-chip>
+                    python
+                </mat-chip>
+                <mat-chip>
+                    node
+                </mat-chip>
+            </mat-chip-set>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <div class="d-flex justify-content-between">
+        <mat-card-actions>
+            <mat-card-subtitle class="mx-2 fw-bold" style="color: red;">Delete</mat-card-subtitle>
+        </mat-card-actions>
+
+        <mat-card-actions align="end">
+            <span class="fw-bold m-4">answers</span>
+            <span class="fw-bold m-4">views</span>
+            <mat-card-subtitle class="mx-3">asked {{askedTime|date:'mediumDate'}}</mat-card-subtitle>
+        </mat-card-actions>
+    </div>
+</mat-card>

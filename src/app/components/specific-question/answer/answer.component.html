@@ -1,0 +1,52 @@
+<mat-card class="ms-3 my-3">
+    <mat-card-header>
+        <mat-card-subtitle>{{answer}} </mat-card-subtitle>
+    </mat-card-header>
+    <div class="d-flex justify-content-between">
+        <mat-card-actions>
+            <mat-card-subtitle class="mx-2">
+                <fa-icon class="icon-profile fa-2x" [icon]="checkButton"></fa-icon>
+            </mat-card-subtitle>
+            <mat-card-subtitle class="mx-2">
+                <fa-icon class="icon-profile" [icon]="likeButton"></fa-icon>
+            </mat-card-subtitle>
+            <mat-card-subtitle class="mx-2">
+                <fa-icon class="icon-profile" [icon]="dislikeButton"></fa-icon>
+            </mat-card-subtitle>
+        </mat-card-actions>
+
+        <mat-card-actions align="end">
+            <img src="{{user.profile_pic}}" class="profile-pic mx-1" alt="">
+            <span class="fw-bold" [routerLink]="['/profile',user._id]">{{user.username}}</span>
+            <mat-card-subtitle class="mx-3">answered {{date|datetoMinutes}}</mat-card-subtitle>
+        </mat-card-actions>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Comments
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-card-subtitle *ngIf="comments">
+                <span class="fw-bold text-primary ps-2">Comments</span>
+                <ol>
+                    <li class="py-2" *ngFor="let comment of comments">
+                        <span class="text-black">{{comment.user.username}}:</span>
+                        <span class="px-2">{{comment.comment}}</span>
+                        <small class="text-black">{{comment.created_at| datetoMinutes}}</small>
+                    </li>
+                </ol>
+            </mat-card-subtitle>
+            <form class="" (ngSubmit)="addAnswerComment(answerId)" [formGroup]="answerComment">
+                <mat-form-field class="w-100 px-3">
+                    <input type="text" maxlength="100" matInput placeholder="Add comments....."
+                        formControlName="comment" value="">
+                    <button matSuffix mat-icon-button>
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </mat-form-field>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-card>

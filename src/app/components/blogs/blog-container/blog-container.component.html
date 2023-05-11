@@ -1,0 +1,23 @@
+<mat-card class="ms-3 my-3 ">
+    <mat-card-actions>
+        <img src="{{profile_pic}}" class="profile-pic mx-1" alt="">
+        <span class="fw-bold" [routerLink]="['/profile',blogUserId]">{{user}}</span>
+        <mat-card-subtitle class="mx-3">{{askedTime | date:'mediumDate'}}</mat-card-subtitle>
+    </mat-card-actions>
+    <mat-card-header>
+        <mat-card-title [routerLink]="['/blogs', blog_id]">{{title}}</mat-card-title>
+        <mat-card-subtitle class="text-wrap">{{details}}.....</mat-card-subtitle>
+        <mat-card-subtitle>
+            <mat-chip-set>
+                <mat-chip *ngFor="let tag of tags">
+                    {{tag.name}}
+                </mat-chip>
+            </mat-chip-set>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <!-- <div class="d-flex justify-content-evenly my-3">
+        <fa-icon class="icon-profile fa-lg" [icon]="likeButton" (click)="like()"></fa-icon>
+        <fa-icon class="icon-profile fa-lg" [icon]="shareButton" (click)="openDialog(blog_id)"></fa-icon>
+        <fa-icon class="icon-profile fa-lg" [icon]="saveButton" (click)="saveBlog()"></fa-icon>
+    </div> -->
+</mat-card>

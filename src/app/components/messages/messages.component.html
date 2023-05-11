@@ -1,0 +1,36 @@
+<div class="d-flex">
+    <div class="col-4">
+        <div class="p-3">
+            <form class="">
+                <mat-form-field class="d-flex justify-content-center">
+                    <mat-label>Search</mat-label>
+                    <input type="search" matInput placeholder="search direct message">
+                </mat-form-field>
+            </form>
+        </div>
+        <app-message-container *ngFor="let user of users" [username]="user.username" [profile_pic]="user.profile_pic"
+            (click)="selectUser(user)"></app-message-container>
+    </div>
+
+    <div class="col-8 border-start" *ngIf="selectedUser">
+        <div class="d-flex pt-2 ps-3 border-bottom position-fixed w-100" style="background-color: lightblue;">
+            <img class="rounded-circle" width="40px" height="40px" src="{{selectedProfile}}" alt="">
+            <div class=" ps-3">
+                <p class="fw-bold m-0">{{selectedUsername}}</p>
+                <p class="text-success" style="font-size: 13px;">active now</p>
+            </div>
+            <div class="ms-auto pt-2 me-4">
+                <fa-icon class="icon-profile fa-2x" [icon]="menuIcon"></fa-icon>
+            </div>
+        </div>
+        <div class="mt-5">
+            <app-chat [messages]="getMessagesForSelectedUser()"></app-chat>
+        </div>
+        <div class="input-container fixed-bottom mb-3 w-50 ms-auto">
+            <input type="text" class="form-control w-75 d-inline" [(ngModel)]="message" (keyup.enter)="sendMessage()"
+                placeholder="Enter your message here.." />
+            <button class="btn btn-primary ms-2" (click)="sendMessage()">Send</button>
+        </div>
+
+    </div>
+</div>

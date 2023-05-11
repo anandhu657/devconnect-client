@@ -1,0 +1,33 @@
+<div class="msb" id="msb">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <!-- Main Menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="home"><fa-icon [icon]="home"></fa-icon> Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="blogs"><fa-icon [icon]="blog"></fa-icon> Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="message"><fa-icon [icon]="message"></fa-icon> Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="notification"><fa-icon [icon]="notification"></fa-icon> Notification</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="ask-question"><fa-icon [icon]="question"></fa-icon> Ask question</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="blog/post"><fa-icon [icon]="addBlog"></fa-icon> Post blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="profile"><fa-icon [icon]="profile"></fa-icon> Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div style="margin-left: 200px;">
+    <router-outlet></router-outlet>
+</div>

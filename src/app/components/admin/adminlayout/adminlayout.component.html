@@ -1,0 +1,34 @@
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <div *ngIf="screenWidth < 768" (click)="sidenav.toggle()">
+            <button mat-icon-button>
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div class="d-flex align-items-center">
+            <h1 class="fw-bold">DevConnect Admin</h1>
+            <div class="justify-content-end">
+                <mat-icon class="fw-bold" (click)="adminLogout()">logout</mat-icon>
+            </div>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav opened="true" mode="side" #sidenav style="width: 200px;">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/admin/report/user" routerLinkActive="active-link"
+                (click)="closeSidenav()">User Reports</a>
+            <a mat-list-item routerLink="/admin/report/question" routerLinkActive="active-link"
+                (click)="closeSidenav()">Question Reports</a>
+            <a mat-list-item routerLink="/admin/report/blog" routerLinkActive="active-link"
+                (click)="closeSidenav()">Blog Reports</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style=" height: 88vh;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

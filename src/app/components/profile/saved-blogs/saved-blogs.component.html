@@ -1,0 +1,12 @@
+<mat-card class="m-3" *ngFor="let blog of savedBlogs">
+    <mat-card-header>
+        <mat-card-title [routerLink]="['/blogs',blog._id]">{{blog.title}}</mat-card-title>
+    </mat-card-header>
+    <div class="d-flex justify-content-between">
+        <mat-card-actions class="ms-auto" align="end">
+            <img src="{{blog.user.profile_pic}}" class="profile-pic mx-1" alt="">
+            <span class="fw-bold" [routerLink]="['/profile',blog.user._id]">{{blog.user.username}}</span>
+            <mat-card-subtitle class="mx-3">created {{blog.date|date:'short'}}</mat-card-subtitle>
+        </mat-card-actions>
+    </div>
+</mat-card>

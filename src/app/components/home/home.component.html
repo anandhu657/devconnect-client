@@ -1,0 +1,13 @@
+<div class="col-12">
+    <app-home-right-sidebar (filterEvent)="receiveFilterValue($event)"></app-home-right-sidebar>
+</div>
+<div class="col-12 col-md-9">
+    <app-question *ngFor="let question of questions" [title]="question.title" [user]="question.user.username"
+        [answerCount]="question.answerCount" [askedTime]="question.date" [views]="question.views"
+        [profile_pic]="question.user.profile_pic" [ques_id]="question._id" [answerCount]="question.answers.length"
+        [tags]="question.tags" [userId]="question.user._id">
+    </app-question>
+    <mat-paginator [length]="totalCount" [pageSize]="pageSize" [pageIndex]="pageIndex"
+        [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)" aria-label="Select page">
+    </mat-paginator>
+</div>
