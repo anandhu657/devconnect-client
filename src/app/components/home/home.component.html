@@ -1,5 +1,6 @@
 <div class="col-12">
-    <app-home-right-sidebar (filterEvent)="receiveFilterValue($event)"></app-home-right-sidebar>
+    <app-home-right-sidebar (filterEvent)="receiveFilterValue($event)"
+        (sortEvent)="receiveSortValue($event)" ></app-home-right-sidebar>
 </div>
 <div class="col-12 col-md-9">
     <app-question *ngFor="let question of questions" [title]="question.title" [user]="question.user.username"

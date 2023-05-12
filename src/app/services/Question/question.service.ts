@@ -13,8 +13,8 @@ export class QuestionService {
     return this._http.post(environment.url + 'questions/add', { question, tags })
   }
 
-  getAllQuestions(skip: number, limit: number) {
-    const queryParams = `?skip=${skip}&limit=${limit}`
+  getAllQuestions(skip: number, limit: number, filter: string, sort: string) {
+    const queryParams = `?skip=${skip}&limit=${limit}&filter=${filter}&sort=${sort}`
     return this._http.get(environment.url + 'questions/' + queryParams)
   }
 
@@ -58,5 +58,21 @@ export class QuestionService {
 
   addAnswerComment(questionId: string, answerId: string, answerComment: string) {
     return this._http.post(environment.url + 'answers/comment', { questionId, answerId, answerComment });
+  }
+
+  acceptAnswer(questionId: string, answerId: string) {
+    return this._http.post(environment.url + 'answers/accept', { questionId, answerId });
+  }
+
+  likeAnswer(questionId: string, answerId: string) {
+    return this._http.post(environment.url + 'answers/like', { questionId, answerId });
+  }
+
+  dislikeAnswer(questionId: string, answerId: string) {
+    return this._http.post(environment.url + 'answers/dislike', { questionId, answerId });
+  }
+
+  getAllTags() {
+    return this._http.get(environment.url + 'questions/tags/all');
   }
 }

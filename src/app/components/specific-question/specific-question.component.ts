@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportReasonComponent } from '../user/report-reason/report-reason.component';
 import { ReportService } from 'src/app/services/Report/report.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-specific-question',
@@ -31,7 +32,9 @@ export class SpecificQuestionComponent implements OnInit {
       answerCount: number,
       views: number,
       date: Date,
+      acceptedAnswer: string,
       user: {
+        _id: string,
         username: string,
         profile_pic: string
       },
@@ -40,11 +43,16 @@ export class SpecificQuestionComponent implements OnInit {
           _id: string,
           answer: string,
           date: Date,
+          accepted: boolean,
           user: {
             _id: string,
             username: string,
             profile_pic: string
           },
+          likes: number,
+          dislikes: number,
+          likedusers: string[],
+          dislikedusers: string[],
           comments: [
             {
               comment: string,
@@ -75,8 +83,11 @@ export class SpecificQuestionComponent implements OnInit {
       ]
     }
   questionComment!: FormGroup;
+  questionAsked!: string;
   solution!: FormGroup
   answerCount!: number;
+  isOwner!: boolean;
+  accepted!: boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -85,7 +96,8 @@ export class SpecificQuestionComponent implements OnInit {
     private _snackbar: MatSnackBar,
     private _toastr: ToastrService,
     private _dialog: MatDialog,
-    private readonly _report: ReportService
+    private readonly _report: ReportService,
+    private readonly _profile: ProfileService
   ) {
     this.questionComment = this._formbuilder.group({
       "comment": ["", this.emptyOrWhitespaceValidator]
@@ -110,12 +122,21 @@ export class SpecificQuestionComponent implements OnInit {
         console.log(res);
         if (res) {
           this.question = res
+          this.questionAsked = this.question.user._id
           this.answerCount = this.question.answers.length
+          this.question.acceptedAnswer ? this.accepted = true : this.accepted = false;
         } else {
           console.log("something went wrong in dashboard");
         }
       })
     })
+
+    this._profile.getUserId().subscribe((res: any) => {
+      res === this.question.user._id ? this.isOwner = true : this.isOwner = false;
+      this.isOwner || this.accepted ? this.accepted = true : this.accepted = false;
+      console.log(this.accepted);
+    })
+
   }
 
   addAnswer() {
@@ -194,7 +215,6 @@ export class SpecificQuestionComponent implements OnInit {
   private reportQuestion(reason: string) {
     this._report.reportQuestion(this.questionId, reason).subscribe((res: any) => {
       console.log(res);
-      
     })
   }
 }

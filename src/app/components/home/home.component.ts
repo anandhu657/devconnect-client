@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from 'src/app/services/Blog/blog.service';
 import { QuestionService } from 'src/app/services/Question/question.service';
 
 @Component({
@@ -34,10 +33,10 @@ export class HomeComponent implements OnInit {
   pageSize = 5
   totalCount = 0
   filterValue!: string
+  sortValue!: string
 
   constructor(
     private _questionService: QuestionService,
-    private _blogService: BlogService
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   loadQuestions(): void {
     const limit = this.pageSize;
-    this._questionService.getAllQuestions(this.pageIndex, limit).subscribe((data: any) => {
+    this._questionService.getAllQuestions(this.pageIndex, limit, this.filterValue, this.sortValue).subscribe((data: any) => {
       console.log(data)
       if (data.questions) {
         this.questions = data.questions;
@@ -61,11 +60,17 @@ export class HomeComponent implements OnInit {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     if (this.filterValue)
-      console.log(this.filterValue,"asda")
+      console.log(this.filterValue, "asda")
     this.loadQuestions();
   }
 
   receiveFilterValue(filterValue: any) {
     this.filterValue = filterValue
+    this.loadQuestions()
+  }
+
+  receiveSortValue(sortValue: any) {
+    this.sortValue = sortValue
+    this.loadQuestions()
   }
 }

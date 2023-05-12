@@ -1,4 +1,4 @@
-<app-blog-right-sidebar (filterEvent)="receiveFilterValue($event)"></app-blog-right-sidebar>
+<app-blog-right-sidebar (filterEvent)="receiveFilterValue($event)" ></app-blog-right-sidebar>
 <div style="margin-right: 320px;">
     <app-blog-container *ngFor="let blog of blogs" [title]="blog.title" [user]="blog.user.username"
         [askedTime]="blog.date" [views]="blog.views" [profile_pic]="blog.user.profile_pic" [blog_id]="blog._id"

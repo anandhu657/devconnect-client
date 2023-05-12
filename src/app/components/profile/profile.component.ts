@@ -61,7 +61,6 @@ export class ProfileComponent implements OnInit {
         })
       }
     })
-
   }
 
   openDialog() {
@@ -84,7 +83,7 @@ export class ProfileComponent implements OnInit {
   private reportUser(reason: string) {
     this._report.reportUser(this.userId, reason).subscribe((res: any) => {
       console.log(res);
-      
+
     })
   }
 

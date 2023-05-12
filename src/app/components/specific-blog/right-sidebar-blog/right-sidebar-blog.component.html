@@ -5,10 +5,10 @@
                 <img src="{{user.profile_pic}}" class="rounded-circle " width="80px" height="80px" alt="" />
                 <div class="pt-2">
                     <h3 class="m-0 fw-bold" [routerLink]="['/profile',user._id]">{{user.username}}</h3>
-                    <p class="m-0">300 connections</p>
+                    <p class="m-0">{{user.connectionsCount}} connections</p>
                     <p class="text-wrap pt-3 text-truncate">{{user.about}}</p>
                 </div>
-                <button class="btn btn-success">Connect</button>
+                <!-- <button class="btn btn-success">Connect</button> -->
             </div>
             <hr />
             <div class="">

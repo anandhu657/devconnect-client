@@ -71,6 +71,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserReportDetailsComponent } from './components/admin/user-report-details/user-report-details.component';
 import { ConformationDialogComponent } from './components/admin/conformation-dialog/conformation-dialog.component';
 import { QuestionReportsComponent } from './components/admin/question-reports/question-reports.component';
@@ -153,7 +154,8 @@ import { BlogReportsComponent } from './components/admin/blog-reports/blog-repor
     MatTableModule,
     MatMenuModule,
     MatSlideToggleModule,
-    MatSortModule
+    MatSortModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

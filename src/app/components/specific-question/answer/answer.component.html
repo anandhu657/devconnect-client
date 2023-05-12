@@ -4,14 +4,18 @@
     </mat-card-header>
     <div class="d-flex justify-content-between">
         <mat-card-actions>
-            <mat-card-subtitle class="mx-2">
-                <fa-icon class="icon-profile fa-2x" [icon]="checkButton"></fa-icon>
+            <mat-card-subtitle class="mx-2" *ngIf="acceptedAnswer">
+                <fa-icon class="icon-profile fa-2x" [icon]="acceptedButton"></fa-icon>
+            </mat-card-subtitle>
+            <mat-card-subtitle class="">
+                <fa-icon class="icon-profile fa-2x" [icon]="checkButton" *ngIf="isOwner"
+                    (click)="acceptAnswer(answerId)"></fa-icon>
             </mat-card-subtitle>
             <mat-card-subtitle class="mx-2">
-                <fa-icon class="icon-profile" [icon]="likeButton"></fa-icon>
+                <fa-icon class="icon-profile" [icon]="likeButton" (click)="like(answerId)"></fa-icon>
             </mat-card-subtitle>
             <mat-card-subtitle class="mx-2">
-                <fa-icon class="icon-profile" [icon]="dislikeButton"></fa-icon>
+                <fa-icon class="icon-profile" [icon]="dislikeButton" (click)="dislike(answerId)"></fa-icon>
             </mat-card-subtitle>
         </mat-card-actions>
 

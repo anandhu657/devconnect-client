@@ -13,8 +13,8 @@ export class BlogService {
     return this._http.post(environment.url + 'blogs/add', { blog, tags })
   }
 
-  getAllBlogs(skip: number, limit: number) {
-    const queryParams = `?skip=${skip}&limit=${limit}`;
+  getAllBlogs(skip: number, limit: number, filter: string, sort: string) {
+    const queryParams = `?skip=${skip}&limit=${limit}&filter=${filter}&sort=${sort}`;
     return this._http.get(environment.url + 'blogs' + queryParams)
   }
 

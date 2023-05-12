@@ -51,7 +51,8 @@
         <mat-tab-group>
             <mat-tab label="Questions">
                 <app-user-question *ngFor="let question of questions" [title]="question.title"
-                    [askedTime]="question.date" [ques_id]="question._id"></app-user-question>
+                    [askedTime]="question.date" [ques_id]="question._id" [tags]="question.tags"
+                    [answerCount]="question.answers.length" [views]="question.views"></app-user-question>
             </mat-tab>
             <mat-tab label="Blogs">
                 <app-user-blogs [userId]="user._id"></app-user-blogs>

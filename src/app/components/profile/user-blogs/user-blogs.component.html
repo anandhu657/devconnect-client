@@ -1,6 +1,6 @@
 <mat-card class="m-3" *ngFor="let blog of userBlogs">
     <mat-card-header>
-        <mat-card-title>{{blog.title}}</mat-card-title>
+        <mat-card-title [routerLink]="['/blogs',blog._id]">{{blog.title}}</mat-card-title>
         <mat-card-subtitle>
             <mat-chip-set>
                 <mat-chip *ngFor="let tag of blog.tags">

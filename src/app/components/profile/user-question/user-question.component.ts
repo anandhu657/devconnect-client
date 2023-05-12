@@ -11,4 +11,5 @@ export class UserQuestionComponent {
   @Input() views!: number;
   @Input() askedTime!: Date;
   @Input() ques_id!: string;
+  @Input() tags!: any;
 }

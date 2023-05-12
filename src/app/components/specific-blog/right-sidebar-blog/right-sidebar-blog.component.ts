@@ -11,7 +11,8 @@ export class RightSidebarBlogComponent implements OnInit {
     _id: string,
     username: string,
     profile_pic: string,
-    about: string
+    about: string,
+    connectionsCount: number
   };
   @Input() tags!: [
     {

@@ -13,6 +13,18 @@
                 </mat-radio-group>
             </div>
 
+            <div>
+                <label id="" class="ps-3 pt-3 fw-bold">Sort</label>
+            </div>
+            <div class="">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="d-flex flex-column"
+                    [(ngModel)]="sortValue" (change)="sendSort()">
+                    <mat-radio-button class="ms-4" *ngFor="let sort of sortedBY" [value]="sort">
+                        {{sort}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
             <div class="">
                 <ul class="list-group">
                     <li class="list-group-item active text-truncate">

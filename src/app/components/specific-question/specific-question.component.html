@@ -26,12 +26,12 @@
         </mat-card-header>
         <div class="d-flex justify-content-between">
             <mat-card-actions>
-                <mat-card-subtitle class="mx-2">
+                <!-- <mat-card-subtitle class="mx-2">
                     <fa-icon class="icon-profile" [icon]="likeButton" (click)="like()"></fa-icon>
-                </mat-card-subtitle>
-                <mat-card-subtitle class="mx-2">
-                    <!-- <fa-icon class="icon-profile" [icon]="dislikeButton" (click)="dislike()"></fa-icon> -->
-                </mat-card-subtitle>
+                </mat-card-subtitle> -->
+                <!-- <mat-card-subtitle class="mx-2"> -->
+                <!-- <fa-icon class="icon-profile" [icon]="dislikeButton" (click)="dislike()"></fa-icon> -->
+                <!-- </mat-card-subtitle> -->
                 <mat-card-subtitle class="mx-2">
                     {{question.views ? question.views : 0 + 1}} views
                 </mat-card-subtitle>
@@ -74,9 +74,12 @@
     </mat-card>
     <h3 class="ms-3 fw-bold">{{answerCount}} answer</h3>
     <app-answer *ngFor="let answer of question.answers" [answer]="answer.answer" [date]="answer.date"
-        [user]="answer.user" [comments]="answer.comments" [answerId]="answer._id"></app-answer>
+        [user]="answer.user" [comments]="answer.comments" [answerId]="answer._id" [isOwner]="isOwner"
+        [questionAsked]="questionAsked" [acceptedAnswer]="answer.accepted" [likes]="answer.likes"
+        [dislikes]="answer.dislikes" [likedusers]="answer.likedusers"
+        [dislikedusers]="answer.dislikedusers"></app-answer>
 
-    <form class="ms-3 mt-5" (ngSubmit)="addAnswer()" [formGroup]="solution">
+    <form class="ms-3 mt-5" (ngSubmit)="addAnswer()" [formGroup]="solution" *ngIf="!accepted">
         <h3 class="fw-bold mt-4 mb-1">Enter your answer</h3>
         <mat-form-field class="" style="display: inline;">
             <mat-label>Explain your solution here.....</mat-label>

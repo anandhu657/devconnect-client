@@ -2,8 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { faThumbsUp, faThumbsDown, faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import {
+  faThumbsUp as farThumbsUp,
+  faThumbsDown as farThumbsDown,
+  faCircleCheck as farCircleCheck
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faCircleCheck as fasCircleCheck,
+  faThumbsUp as fasThumbsUp,
+  faThumbsDown as fasThumbsDown
+} from '@fortawesome/free-solid-svg-icons';
 import { QuestionService } from 'src/app/services/Question/question.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-answer',
@@ -11,12 +21,16 @@ import { QuestionService } from 'src/app/services/Question/question.service';
   styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
-  likeButton = faThumbsUp
-  dislikeButton = faThumbsDown
-  checkButton = faCircleCheck
+  likeButton = farThumbsUp
+  dislikeButton = farThumbsDown
+  checkButton = farCircleCheck
+  acceptedButton = fasCircleCheck
   answerComment!: FormGroup;
   panelOpenState = false;
   questionId!: string;
+  userId!: string;
+
+  @Input() isOwner!: boolean;
   @Input() answerId!: string;
   @Input() answer!: string;
   @Input() date!: Date;
@@ -25,6 +39,12 @@ export class AnswerComponent implements OnInit {
     profile_pic: string,
     _id: string
   }
+  @Input() questionAsked!: string;
+  @Input() acceptedAnswer!: boolean;
+  @Input() likes!: number;
+  @Input() dislikes!: number;
+  @Input() likedusers!: string[];
+  @Input() dislikedusers!: string[];
   @Input() comments!: [
     {
       comment: string,
@@ -41,6 +61,7 @@ export class AnswerComponent implements OnInit {
     private _snackbar: MatSnackBar,
     private _questionService: QuestionService,
     private _route: ActivatedRoute,
+    private _profile: ProfileService
   ) {
     this.answerComment = this._formbuilder.group({
       "comment": ["", this.emptyOrWhitespaceValidator]
@@ -50,6 +71,13 @@ export class AnswerComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe((params: any) => {
       this.questionId = params['id'];
+    })
+    this._profile.getUserId().subscribe((res: any) => {
+      this.userId = res;
+      res === this.questionAsked ? this.isOwner = true : this.isOwner = false;
+      this.likedusers.includes(this.userId) ? this.likeButton = fasThumbsUp : this.likeButton = farThumbsUp
+      this.dislikedusers.includes(this.userId) ? this.dislikeButton = fasThumbsDown : this.dislikeButton = farThumbsDown
+      console.log()
     })
   }
 
@@ -70,6 +98,42 @@ export class AnswerComponent implements OnInit {
       console.log(res)
       if (res.success)
         this.openSnackBar("Comment added succefully", "undo")
+      else
+        this.openSnackBar("Something went wrong please try again", "undo")
+    })
+  }
+
+  acceptAnswer(answerId: string) {
+    this._questionService.acceptAnswer(this.questionId, answerId).subscribe((res: any) => {
+      console.log(res)
+      if (res.success) {
+        this.checkButton = fasCircleCheck
+        this.openSnackBar("Answer accepted succefully", "undo")
+      }
+      else
+        this.openSnackBar("Something went wrong please try again", "undo")
+    })
+  }
+
+  like(answerId: string) {
+    this._questionService.likeAnswer(this.questionId, answerId).subscribe((res: any) => {
+      console.log(res)
+      if (res.success) {
+        this.likeButton = fasThumbsUp
+        this.dislikeButton = farThumbsDown
+      }
+      else
+        this.openSnackBar("Something went wrong please try again", "undo")
+    })
+  }
+
+  dislike(answerId: string) {
+    this._questionService.dislikeAnswer(this.questionId, answerId).subscribe((res: any) => {
+      console.log(res)
+      if (res.success) {
+        this.dislikeButton = fasThumbsDown
+        this.likeButton = farThumbsUp
+      }
       else
         this.openSnackBar("Something went wrong please try again", "undo")
     })

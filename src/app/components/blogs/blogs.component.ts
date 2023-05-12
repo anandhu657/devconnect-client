@@ -12,6 +12,8 @@ export class BlogsComponent implements OnInit {
   pageIndex = 0
   pageSize = 5
   totalCount = 0
+  sortValue!: string
+  filterValue!: string
 
   constructor(
     private _blogService: BlogService,
@@ -22,7 +24,7 @@ export class BlogsComponent implements OnInit {
   }
 
   loadBlogs() {
-    this._blogService.getAllBlogs(this.pageIndex, this.pageSize).subscribe((res: any) => {
+    this._blogService.getAllBlogs(this.pageIndex, this.pageSize, this.filterValue, this.sortValue).subscribe((res: any) => {
       console.log(res);
       if (res) {
         this.blogs = res.blogs;
@@ -35,24 +37,18 @@ export class BlogsComponent implements OnInit {
   }
 
   receiveFilterValue(filterValue: any) {
-    console.log(filterValue, "hai");
-
-    if (filterValue == "No answers") {
-      this._blogService.getNoAnswers().subscribe((res: any) => {
-        console.log(res);
-        if (res) {
-          this.blogs = res
-          console.log(this.blogs);
-        } else {
-          console.log("something went wrong in dashboard");
-        }
-      })
-    }
+    this.filterValue = filterValue
+    this.loadBlogs()
   }
 
   onPageChange(event: any) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadBlogs();
+  }
+
+  receiveSortValue(sortValue: any) {
+    this.sortValue = sortValue
+    this.loadBlogs()
   }
 }

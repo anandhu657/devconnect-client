@@ -8,9 +8,12 @@ import { BlogService } from 'src/app/services/Blog/blog.service';
 })
 export class HomeRightSidebarComponent implements OnInit {
   filterValue: any;
-  filterBY: string[] = ["No answers", "No accepted answers"];
+  filterBY: string[] = ["All","No answers", "No accepted answers"];
+  sortValue: any;
+  sortedBY: string[] = ["Newest", "Most Viewed", "Least Viewed"];
   latestBlogs: any;
   @Output() filterEvent = new EventEmitter<string>();
+  @Output() sortEvent = new EventEmitter<string>();
 
   constructor(private _blogService: BlogService) { }
 
@@ -22,6 +25,9 @@ export class HomeRightSidebarComponent implements OnInit {
 
   sendFilter() {
     this.filterEvent.emit(this.filterValue)
-    console.log(this.filterValue);
+  }
+
+  sendSort() {
+    this.sortEvent.emit(this.sortValue)
   }
 }

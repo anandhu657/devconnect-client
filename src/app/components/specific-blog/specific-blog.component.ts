@@ -38,6 +38,7 @@ export class SpecificBlogComponent implements OnInit {
         username: string,
         profile_pic: string,
         about: string
+        connectionsCount: number
       },
       tags: [{
         name: string,
