@@ -1,4 +1,4 @@
-<div class="d-flex">
+<!-- <div class="d-flex">
     <div class="col-4">
         <div class="p-3">
             <form class="">
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="mt-5">
-            <app-chat [messages]="getMessagesForSelectedUser()"></app-chat>
+            <app-chat [messages]="messages"></app-chat>
         </div>
         <div class="input-container fixed-bottom mb-3 w-50 ms-auto">
             <input type="text" class="form-control w-75 d-inline" [(ngModel)]="message" (keyup.enter)="sendMessage()"
@@ -33,4 +33,62 @@
         </div>
 
     </div>
-</div>
+</div> -->
+
+<section style="background-color: #CDC4F9;">
+  <div class="container-fluid py-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" id="chat3" style="border-radius: 15px;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 col-lg-5 col-xl-4 mb-md-0">
+                <div class="">
+                  <div class="input-group rounded mb-3">
+                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                      aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                      <i class="fas fa-search"></i>
+                    </span>
+                  </div>
+                  <div class="overflow-auto" style="position: relative;">
+                    <ul class="list-unstyled mb-0">
+                      <app-message-container *ngFor="let user of users" [username]="user.username"
+                        [profile_pic]="user.profile_pic" (click)="selectUser(user)"></app-message-container>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-7 col-xl-8">
+                <div class="d-flex pt-2 ps-3 border-bottom w-100" style="background-color: lightblue; z-index: 100;"
+                  *ngIf="selectedUser">
+                  <img class="rounded-circle" width="40px" height="40px" src="{{selectedProfile}}" alt="">
+                  <div class=" ps-3">
+                    <p class="fw-bold m-0">{{selectedUsername}}</p>
+                    <p class="text-success" style="font-size: 13px;">active now</p>
+                  </div>
+                  <div class="ms-auto pt-2 me-4">
+                    <fa-icon class="icon-profile fa-2x" [icon]="menuIcon"></fa-icon>
+                  </div>
+                </div>
+                <div class="pt-3 pe-3 overflow-auto" style="position: relative; height: 430px;overflow-x: hidden;">
+                  <app-chat [messages]="messages" *ngIf="selectedUser"></app-chat>
+                </div>
+
+                <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2"
+                  *ngIf="selectedUser">
+                  <img src="{{selectedProfile}}" alt="avatar 3" style="width: 40px; height: 100%;">
+                  <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
+                    [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Enter your message here..">
+                  <a class="ms-1 text-muted" (click)="sendMessage()"><mat-icon>send</mat-icon></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

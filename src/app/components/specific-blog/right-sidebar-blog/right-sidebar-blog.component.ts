@@ -7,13 +7,6 @@ import { BlogService } from '../../../services/Blog/blog.service';
   styleUrls: ['./right-sidebar-blog.component.css']
 })
 export class RightSidebarBlogComponent implements OnInit {
-  @Input() user!: {
-    _id: string,
-    username: string,
-    profile_pic: string,
-    about: string,
-    connectionsCount: number
-  };
   @Input() tags!: [
     {
       name: string,
@@ -22,6 +15,7 @@ export class RightSidebarBlogComponent implements OnInit {
   ]
 
   realatedBlog!: [{
+    date: Date,
     title: string,
     _id: string
   }]

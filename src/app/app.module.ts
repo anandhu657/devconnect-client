@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 
 // Components
 import { AppRoutingModule } from './app-routing.module';
@@ -20,9 +21,9 @@ import { EditProfileComponent } from './components/profile/edit-profile/edit-pro
 import { AuthButtonComponent } from './components/auth-button/auth-button.component';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { AskQuestionComponent } from './components/ask-question/ask-question.component';
-import { HomeComponent } from './components/home/home.component';
-import { QuestionComponent } from './components/home/question/question.component';
-import { HomeRightSidebarComponent } from './components/home/home-right-sidebar/home-right-sidebar.component';
+import { QuestionsComponent } from './components/questions/questions.component';
+import { QuestionContainerComponent } from './components/questions/question-container/question-container.component';
+import { QuestionsRightSidebarComponent } from './components/questions/questions-right-sidebar/questions-right-sidebar.component';
 import { SpecificQuestionComponent } from './components/specific-question/specific-question.component';
 import { QuestionRightSidebarComponent } from './components/specific-question/question-right-sidebar/question-right-sidebar.component';
 import { UserQuestionComponent } from './components/profile/user-question/user-question.component';
@@ -89,9 +90,9 @@ import { BlogReportsComponent } from './components/admin/blog-reports/blog-repor
     AuthButtonComponent,
     UserAuthComponent,
     AskQuestionComponent,
-    HomeComponent,
-    QuestionComponent,
-    HomeRightSidebarComponent,
+    QuestionsComponent,
+    QuestionContainerComponent,
+    QuestionsRightSidebarComponent,
     SpecificQuestionComponent,
     QuestionRightSidebarComponent,
     AnswerComponent,
@@ -155,7 +156,8 @@ import { BlogReportsComponent } from './components/admin/blog-reports/blog-repor
     MatMenuModule,
     MatSlideToggleModule,
     MatSortModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MdbScrollspyModule
   ],
   providers: [
     {

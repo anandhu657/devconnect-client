@@ -1,5 +1,14 @@
-<div class="chat-container">
+<!-- <div class="chat-container">
     <div class="chat-message" *ngFor="let message of messages" [ngClass]="{'receiver-message': message.isReceiver, 'sender-message': message.isSender}">
         <p>{{message.text}}</p>
+    </div>
+</div> -->
+
+<div class="d-flex flex-row " *ngFor="let message of messages"
+    [ngClass]="{'receiver-message': message.isReceiver, 'sender-message': message.isSender}">
+    <div>
+        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #bdc4ca;">
+            {{message.text}}
+        </p>
     </div>
 </div>

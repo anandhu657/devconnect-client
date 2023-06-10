@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeRightSidebarComponent } from './home-right-sidebar.component';
+import { HomeRightSidebarComponent } from './question-right-sidebar.component';
 
 describe('HomeRightSidebarComponent', () => {
   let component: HomeRightSidebarComponent;

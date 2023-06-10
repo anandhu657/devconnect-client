@@ -1,5 +1,4 @@
-import { Component, ViewChild, Renderer2, OnInit, OnDestroy, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, Input } from '@angular/core';
 import { faHome, faBlog, faMessage, faBell, faQuestion, faSquarePlus, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,43 +6,22 @@ import { faHome, faBlog, faMessage, faBell, faQuestion, faSquarePlus, faUser } f
   templateUrl: './userlayout.component.html',
   styleUrls: ['./userlayout.component.css']
 })
-export class UserlayoutComponent implements OnInit, OnDestroy {
-  home = faHome
-  blog = faBlog
-  message = faMessage
-  notification = faBell
-  question = faQuestion
-  addBlog = faSquarePlus
-  profile = faUser
+export class UserlayoutComponent {
 
   @Input() userId!: string
+  buttons = [
+    { id: 1, name: 'Home', icon: faHome, link: 'home' },
+    { id: 2, name: 'Questions', icon: faQuestion, link: 'questions' },
+    { id: 3, name: 'Blogs', icon: faBlog, link: 'blogs' },
+    { id: 4, name: 'Messages', icon: faMessage, link: 'message' },
+    { id: 5, name: 'Ask Question', icon: faSquarePlus, link: 'ask-question' },
+    { id: 6, name: 'Add Blog', icon: faSquarePlus, link: 'blog/post' },
+    { id: 7, name: 'Notifications', icon: faBell, link: 'notification' },
+    { id: 8, name: 'Profile', icon: faUser, link: 'profile/' + this.userId }
+  ]
 
-  @ViewChild('sidenav') sidenav!: MatSidenav;
-  screenWidth!: number;
-
-  constructor(
-    private _renderer: Renderer2,
-  ) { }
-
-  ngOnInit() {
-    this.screenWidth = window.innerWidth;
-    this._renderer.listen('window', 'resize', () => {
-      this.screenWidth = window.innerWidth;
-      if (this.screenWidth < 768) {
-        this.sidenav.close();
-      } else {
-        this.sidenav.open();
-      }
-    });
+  trackByButtonId(index: number, button: any): number {
+    return button.id;
   }
 
-  closeSidenav() {
-    if (this.screenWidth < 768) {
-      this.sidenav.close();
-    }
-  }
-
-  ngOnDestroy() {
-    this._renderer.destroy();
-  }
 }

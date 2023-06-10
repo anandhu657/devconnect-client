@@ -3,11 +3,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Iquestion } from 'src/app/models/Question';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {  }
 
   addQuestion(question: Iquestion, tags: string[]) {
     return this._http.post(environment.url + 'questions/add', { question, tags })

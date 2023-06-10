@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from 'src/app/services/Question/question.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-questions',
+  templateUrl: './questions.component.html',
+  styleUrls: ['./questions.component.css']
 })
-export class HomeComponent implements OnInit {
+export class QuestionsComponent implements OnInit {
   questions!: [
     {
       _id: string,

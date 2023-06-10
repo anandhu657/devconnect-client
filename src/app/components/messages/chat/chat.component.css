@@ -12,12 +12,19 @@
 }
 
 .receiver-message {
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2;
     align-self: flex-start;
+     */
+    justify-content: start;
 }
 
 .sender-message {
-    background-color: #4CAF50;
+    /* background-color: #4CAF50;
     color: white;
-    align-self: flex-end;
+    align-self: flex-end; */
+    /* margin-right: 30px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: blue; */
+    justify-content: end;
 }

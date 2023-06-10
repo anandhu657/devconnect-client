@@ -28,15 +28,13 @@ export class ChatService {
     this.socket.emit('personal-message', message);
   }
 
-  getPreviousMessages() {
-    return this._http.get(environment.url + 'chat/messages/');
+  getPreviousMessages(selectedUser: string) {
+    return this._http.get(environment.url + 'chat/messages/' + selectedUser);
   }
 
   getPersonalMessages(): Observable<any> {
     return new Observable<any>(observer => {
       this.socket.on('get-personal-message', (data: any) => {
-        console.log(data);
-
         observer.next(data);
       });
     });

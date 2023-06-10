@@ -2,11 +2,11 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/services/Blog/blog.service';
 
 @Component({
-  selector: 'app-home-right-sidebar',
-  templateUrl: './home-right-sidebar.component.html',
-  styleUrls: ['./home-right-sidebar.component.css']
+  selector: 'app-questions-right-sidebar',
+  templateUrl: './questions-right-sidebar.component.html',
+  styleUrls: ['./questions-right-sidebar.component.css']
 })
-export class HomeRightSidebarComponent implements OnInit {
+export class QuestionsRightSidebarComponent implements OnInit {
   filterValue: any;
   filterBY: string[] = ["All","No answers", "No accepted answers"];
   sortValue: any;

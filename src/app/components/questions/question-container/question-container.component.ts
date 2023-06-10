@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  selector: 'app-question-container',
+  templateUrl: './question-container.component.html',
+  styleUrls: ['./question-container.component.css']
 })
-export class QuestionComponent {
+export class QuestionContainerComponent {
   @Input() title!: string;
   @Input() answerCount!: number;
   @Input() views!: number;

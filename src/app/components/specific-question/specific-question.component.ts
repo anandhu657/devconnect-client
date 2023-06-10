@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReportReasonComponent } from '../user/report-reason/report-reason.component';
 import { ReportService } from 'src/app/services/Report/report.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { NotificationService } from 'src/app/services/Notification/notification.service';
 
 @Component({
   selector: 'app-specific-question',
@@ -88,10 +89,12 @@ export class SpecificQuestionComponent implements OnInit {
   answerCount!: number;
   isOwner!: boolean;
   accepted!: boolean;
+  currentLoggedIn!: string;
 
   constructor(
     private _route: ActivatedRoute,
     private _questionService: QuestionService,
+    private _notificationService: NotificationService,
     private _formbuilder: FormBuilder,
     private _snackbar: MatSnackBar,
     private _toastr: ToastrService,
@@ -125,17 +128,20 @@ export class SpecificQuestionComponent implements OnInit {
           this.questionAsked = this.question.user._id
           this.answerCount = this.question.answers.length
           this.question.acceptedAnswer ? this.accepted = true : this.accepted = false;
+          this._profile.getUserId().subscribe((res: any) => {
+            console.log(res)
+            res === this.question.user._id ? this.isOwner = true : this.isOwner = false;
+            this.isOwner || this.accepted ? this.accepted = true : this.accepted = false;
+            this.currentLoggedIn = res;
+
+          })
         } else {
           console.log("something went wrong in dashboard");
         }
       })
     })
 
-    this._profile.getUserId().subscribe((res: any) => {
-      res === this.question.user._id ? this.isOwner = true : this.isOwner = false;
-      this.isOwner || this.accepted ? this.accepted = true : this.accepted = false;
-      console.log(this.accepted);
-    })
+
 
   }
 
@@ -146,6 +152,8 @@ export class SpecificQuestionComponent implements OnInit {
         this.openSnackBar("Answer added succefully", "undo")
       else
         this.openSnackBar("Something went wrong please try again", "undo")
+
+      this._notificationService.sendNotification(this.questionId, this.currentLoggedIn, this.question.user._id)
     })
   }
 

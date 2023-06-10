@@ -6,7 +6,7 @@ import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { AuthGuard } from './shared/Auth/auth.guard';
 import { AccessGuard } from './shared/Auth/access.guard';
 import { AskQuestionComponent } from './components/ask-question/ask-question.component';
-import { HomeComponent } from './components/home/home.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 import { SpecificQuestionComponent } from './components/specific-question/specific-question.component';
 import { PostBlogComponent } from './components/post-blog/post-blog.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
@@ -25,6 +25,7 @@ import { QuestionReportsComponent } from './components/admin/question-reports/qu
 import { QuestionReportDetailsComponent } from './components/admin/question-report-details/question-report-details.component';
 import { BlogReportsComponent } from './components/admin/blog-reports/blog-reports.component';
 import { BlogReportDetailsComponent } from './components/admin/blog-report-details/blog-report-details.component';
+import { HomeComponent } from './components/user/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -38,6 +39,11 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [AccessGuard]
+      },
+      {
+        path: 'questions',
+        component: QuestionsComponent,
         canActivate: [AccessGuard]
       },
       {
